@@ -3,11 +3,13 @@ import SortComponent from './SortComponent'
 import ProductItems from './ProductItems'
 
 class ProductList extends Component {
+
+
     render() {
         return (
             <Fragment>
                 <SortComponent />
-                <ProductItems />
+                <ProductItems  products = {this.props.products}  />
             </Fragment>
         )
     }

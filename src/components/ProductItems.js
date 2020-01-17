@@ -4,7 +4,7 @@ class ProductItems extends Component {
     render() {
         return (
            <Fragment>
-                 < Product />  
+                 < Product products = {this.props.products}  />  
            </Fragment>           
         )
     }

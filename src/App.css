@@ -28,7 +28,9 @@
   color: #61dafb;
 }
 
-
+.minus {
+  cursor :pointer;
+}
 
 i.icon.minus.circle:before {
   color: red;
