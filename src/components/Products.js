@@ -4,9 +4,15 @@ import InStockComponent from './InStockComponent'
 import AddProcuctComponent from './AddProcuctComponent'
 import ProductList from './ProductList'
 class Products extends Component {
+    constructor(props) {
+        super(props)
+
+        this.deleteProduct = this.deleteProduct.bind(this)
+        this.handleDeleteClick = this.handleDeleteClick.bind(this)
+    }
 
     state = {
-         products : [
+        products: [
             { id: 1, category: 'Musical Instruments', price: '$459.99', stocked: true, name: 'Clarinet' },
             { id: 2, category: 'Musical Instruments', price: '$5, 000', stocked: true, name: 'Harpsicord' },
             { id: 3, category: 'Musical Instruments', price: '$11,000', stocked: false, name: 'Fortepiano' },
@@ -16,21 +22,36 @@ class Products extends Component {
         ]
     }
 
+    handleDeleteClick(evt) {
+        let productId = parseInt(evt.target.id)
+        this.deleteProduct(productId)
+    }
+
+    deleteProduct(productID) {
+        let newProducts = this.state.products.filter((product) => {
+
+            return product.id !== productID;
+        })
+
+        this.setState({
+            products: newProducts
+        })
+
+    }
 
 
+    render() {
+        return (
+            <div className="ui raised very padded text container segment">
+                <h2 className="ui header">products app</h2>
+                <SearchComponent />
+                <InStockComponent />
+                <ProductList deleteButtonClicked={this.handleDeleteClick} products={this.state.products} />
+                <AddProcuctComponent />
 
-render() {
-    return (
-        <div className="ui raised very padded text container segment">
-            <h2 className="ui header">products app</h2>
-            <SearchComponent />
-            <InStockComponent />
-            <ProductList  products = {this.state.products} />
-            <AddProcuctComponent />
-
-        </div>
-    )
-}
+            </div>
+        )
+    }
 }
 
 export default Products
