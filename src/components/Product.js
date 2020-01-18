@@ -17,7 +17,7 @@ class Product extends Component {
 
         let AllProductsList = this.props.products.map((product) => {
             return (
-                <tr key={product.id}>
+                <tr key={product.id} className={ product.stocked === true  ? null : 'outOfStock'}>
                     <td data-label="Name">{product.name}</td>
                     <td data-label="price">{product.price}</td>
                     <td data-label="delete">
@@ -28,6 +28,23 @@ class Product extends Component {
                 </tr>
             )
         })
+
+        let productInStock = this.props.products.filter((product) => {
+            return product.stocked === true;
+        }).map((product) => {
+            return (
+                <tr key={product.id}   className={product.stocked === true  ? null : 'outOfStock'} >
+                    <td data-label="Name">{product.name}</td>
+                    <td data-label="price">{product.price}</td>
+                    <td data-label="delete">
+                        <button id={product.id} onClick={this.handleDeleteButton} type="button" className="deleteButton" >
+                            X
+                        </button>
+                    </td>
+                </tr>
+            )
+        })
+
         return (
             <Fragment>
                 <table className="ui celled table">
@@ -37,7 +54,21 @@ class Product extends Component {
                             <th>delete</th>
                         </tr></thead>
                     <tbody>
-                        {AllProductsList}
+                        { 
+                            (()=>{
+                                if(this.props.inStock) {
+                                    return (
+                                        productInStock
+
+                                    )
+                                }
+                                else {
+                                    return(
+                                        AllProductsList
+                                    )
+                                }
+                            })()
+                        }
                     </tbody>
                 </table>
             </Fragment>

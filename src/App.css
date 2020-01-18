@@ -44,3 +44,8 @@ i.icon.minus.circle:before {
   padding: 10px;
   cursor: pointer;
 }
+
+
+.outOfStock {
+  color: red;
+}

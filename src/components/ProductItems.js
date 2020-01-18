@@ -7,7 +7,7 @@ class ProductItems extends Component {
     render() {
         return (
            <Fragment>
-                 < Product deleteButtonClicked = {this.props.deleteButtonClicked} products = {this.props.products}  />  
+                 < Product inStock = {this.props.inStock}  deleteButtonClicked = {this.props.deleteButtonClicked} products = {this.props.products}  />  
            </Fragment>           
         )
     }

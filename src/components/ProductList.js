@@ -9,7 +9,7 @@ class ProductList extends Component {
         return (
             <Fragment>
                 <SortComponent />
-                <ProductItems deleteButtonClicked = {this.props.deleteButtonClicked}  products = {this.props.products}  />
+                <ProductItems inStock = {this.props.inStock} deleteButtonClicked = {this.props.deleteButtonClicked}  products = {this.props.products}  />
             </Fragment>
         )
     }
