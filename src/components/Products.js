@@ -30,6 +30,8 @@ class Products extends Component {
 
 
     handleDeleteClick(evt) {
+        evt.stopPropagation();
+        evt.preventDefault();
         let productId = parseInt(evt.target.id)
         this.deleteProduct(productId)
     }

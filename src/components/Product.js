@@ -17,12 +17,12 @@ class Product extends Component {
 
         let AllProductsList = this.props.products.map((product) => {
             return (
-                <tr key={product.id} className={ product.stocked === true  ? null : 'outOfStock'}>
+                <tr key={product.id} className={product.stocked === true ? null : 'outOfStock'}>
                     <td data-label="Name">{product.name}</td>
                     <td data-label="price">{product.price}</td>
                     <td data-label="delete">
                         <button id={product.id} onClick={this.handleDeleteButton} type="button" className="deleteButton" >
-                            X
+                            <i className="trash icon"></i>
                         </button>
                     </td>
                 </tr>
@@ -33,12 +33,12 @@ class Product extends Component {
             return product.stocked === true;
         }).map((product) => {
             return (
-                <tr key={product.id}   className={product.stocked === true  ? null : 'outOfStock'} >
+                <tr key={product.id} className={product.stocked === true ? null : 'outOfStock'} >
                     <td data-label="Name">{product.name}</td>
                     <td data-label="price">{product.price}</td>
                     <td data-label="delete">
                         <button id={product.id} onClick={this.handleDeleteButton} type="button" className="deleteButton" >
-                            X
+                            <i className="trash icon"></i>
                         </button>
                     </td>
                 </tr>
@@ -54,16 +54,16 @@ class Product extends Component {
                             <th>delete</th>
                         </tr></thead>
                     <tbody>
-                        { 
-                            (()=>{
-                                if(this.props.inStock) {
+                        {
+                            (() => {
+                                if (this.props.inStock) {
                                     return (
                                         productInStock
 
                                     )
                                 }
                                 else {
-                                    return(
+                                    return (
                                         AllProductsList
                                     )
                                 }
