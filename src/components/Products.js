@@ -36,9 +36,9 @@ class Products extends Component {
         this.deleteProduct(productId)
     }
 
-    inStockHandler(evt){
+    inStockHandler(evt) {
         this.setState({
-            inStock : evt.target.checked 
+            inStock: evt.target.checked
         })
     }
 
@@ -54,14 +54,27 @@ class Products extends Component {
 
     }
 
+    addProduct(productID) {
+       
+    }
+
+    addProductHandler(evt) {
+        const target = evt.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+        this.setState({
+            [name]: value
+        });
+    }
+
 
     render() {
         return (
             <div className="ui raised very padded text container segment">
                 <h2 className="ui header">products app</h2>
                 <SearchComponent searchText={this.state.search} />
-                <InStockComponent inStock = {this.state.inStock} isInStockHandler = {this.inStockHandler} />
-                <ProductList inStock = {this.state.inStock} searchText={this.state.search} deleteButtonClicked={this.handleDeleteClick} products={this.state.products} />
+                <InStockComponent inStock={this.state.inStock} isInStockHandler={this.inStockHandler} />
+                <ProductList inStock={this.state.inStock} searchText={this.state.search} deleteButtonClicked={this.handleDeleteClick} products={this.state.products} />
                 <AddProcuctComponent />
 
             </div>

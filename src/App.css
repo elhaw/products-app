@@ -45,3 +45,7 @@ i.icon.minus.circle:before {
   color: white;
   background-color: #282c34;
 }
+
+button > * {
+  pointer-events: none;
+}
