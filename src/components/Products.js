@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import uuid from 'uuid'
 import SearchComponent from './SearchComponent'
 import InStockComponent from './InStockComponent'
 import AddProcuctComponent from './AddProcuctComponent'
@@ -20,19 +21,26 @@ class Products extends Component {
         this.state = {
             products: PRODUCTS,
             search: '',
-            inStock: false
+            inStock: false,
+            product: {
+                id: uuid.v4(),
+                category: '',
+                price: '',
+                stocked: false,
+                name: ''
+            }
         }
 
         this.deleteProduct = this.deleteProduct.bind(this)
         this.handleDeleteClick = this.handleDeleteClick.bind(this)
         this.inStockHandler = this.inStockHandler.bind(this)
+        this.addProductHandler = this.addProductHandler.bind(this)
     }
 
 
     handleDeleteClick(evt) {
         evt.stopPropagation();
         evt.preventDefault();
-        console.log(evt.target)
         let productId = parseInt(evt.target.id)
         this.deleteProduct(productId)
     }
@@ -44,19 +52,15 @@ class Products extends Component {
     }
 
     deleteProduct(productID) {
-        let newProducts = this.state.products.filter((product) => {
+        let remainingProducts = this.state.products.filter((product) => {
 
             return product.id !== productID;
         })
 
         this.setState({
-            products: newProducts
+            products: remainingProducts
         })
 
-    }
-
-    addProduct(productID) {
-       
     }
 
     addProductHandler(evt) {
@@ -76,7 +80,7 @@ class Products extends Component {
                 <SearchComponent searchText={this.state.search} />
                 <InStockComponent inStock={this.state.inStock} isInStockHandler={this.inStockHandler} />
                 <ProductList inStock={this.state.inStock} searchText={this.state.search} deleteButtonClicked={this.handleDeleteClick} products={this.state.products} />
-                <AddProcuctComponent />
+                <AddProcuctComponent product = {this.state.product} addProductHandler ={ this.addProductHandler} />
 
             </div>
         )
