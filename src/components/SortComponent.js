@@ -1,6 +1,17 @@
 import React, { Component, Fragment } from 'react'
 
 class SortComponent extends Component {
+
+    constructor(props){
+        super(props)
+
+        this.sortHandler = this.sortHandler.bind(this)
+    }
+
+
+    sortHandler(evt) {
+        this.props.onSort(evt)
+    }
     render() {
         return (
             <Fragment>
@@ -8,10 +19,10 @@ class SortComponent extends Component {
                     <p>
                         sort by name
                     </p>
-                    <button className="ui left attached button">
+                    <button onClick = {this.sortHandler} name = "sortAZ" className="ui left attached button">
                         <i className="angle double up icon"></i>
                     </button>
-                    <button className="right attached ui button">
+                    <button onClick = {this.sortHandler} name = "sortZA" className="right attached ui button">
                         <i className="angle double down icon"></i>
                     </button>
                 </div>
