@@ -35,6 +35,7 @@ class Products extends Component {
         this.handleDeleteClick = this.handleDeleteClick.bind(this)
         this.inStockHandler = this.inStockHandler.bind(this)
         this.addProductHandler = this.addProductHandler.bind(this)
+        this.addNewProduct = this.addNewProduct.bind(this)
     }
 
 
@@ -62,16 +63,24 @@ class Products extends Component {
         })
 
     }
-
     addProductHandler(evt) {
         const target = evt.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
         this.setState({
-            [name]: value
+            product: {
+                ...this.state.product,
+                [name]: value
+            }
         });
     }
+    addNewProduct() {
+        let newProduct = this.state.product
+        this.setState({
+            products: [...this.state.products, newProduct]
+        })
 
+    }
 
     render() {
         return (
@@ -80,7 +89,7 @@ class Products extends Component {
                 <SearchComponent searchText={this.state.search} />
                 <InStockComponent inStock={this.state.inStock} isInStockHandler={this.inStockHandler} />
                 <ProductList inStock={this.state.inStock} searchText={this.state.search} deleteButtonClicked={this.handleDeleteClick} products={this.state.products} />
-                <AddProcuctComponent product = {this.state.product} addProductHandler ={ this.addProductHandler} />
+                <AddProcuctComponent onSave={this.addNewProduct} product={this.state.product} addProductHandler={this.addProductHandler} />
 
             </div>
         )
