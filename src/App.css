@@ -46,6 +46,6 @@ i.icon.minus.circle:before {
   background-color: #282c34;
 }
 
-/* button > * {
+button > * {
   pointer-events: none;
-} */
+}

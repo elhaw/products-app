@@ -6,12 +6,12 @@ import AddProcuctComponent from './AddProcuctComponent'
 import ProductList from './ProductList'
 
 const PRODUCTS = [
-    { id: 1, category: 'Musical Instruments', price: '$459.99', stocked: true, name: 'Clarinet' },
-    { id: 2, category: 'Musical Instruments', price: '$5, 000', stocked: true, name: 'Harpsicord' },
-    { id: 3, category: 'Musical Instruments', price: '$11,000', stocked: false, name: 'Fortepiano' },
-    { id: 4, category: 'Furniture', price: '$799', stocked: true, name: 'Chaise Lounge' },
-    { id: 5, category: 'Furniture', price: '$1,300', stocked: false, name: 'Dining Table' },
-    { id: 6, category: 'Furniture', price: '$100', stocked: true, name: 'Bean Bag' }
+    { id: "1", category: 'Musical Instruments', price: '$459.99', stocked: true, name: 'Clarinet' },
+    { id: "2", category: 'Musical Instruments', price: '$5, 000', stocked: true, name: 'Harpsicord' },
+    { id: "3", category: 'Musical Instruments', price: '$11,000', stocked: false, name: 'Fortepiano' },
+    { id: "4", category: 'Furniture', price: '$799', stocked: true, name: 'Chaise Lounge' },
+    { id: "5", category: 'Furniture', price: '$1,300', stocked: false, name: 'Dining Table' },
+    { id: "6", category: 'Furniture', price: '$100', stocked: true, name: 'Bean Bag' },
 ]
 class Products extends Component {
     constructor(props) {
@@ -36,14 +36,15 @@ class Products extends Component {
         this.inStockHandler = this.inStockHandler.bind(this)
         this.addProductHandler = this.addProductHandler.bind(this)
         this.addNewProduct = this.addNewProduct.bind(this)
+        this.clearFormData = this.clearFormData.bind(this)
     }
 
 
     handleDeleteClick(evt) {
         evt.stopPropagation();
         evt.preventDefault();
-        let productId = parseInt(evt.target.id)
-        this.deleteProduct(productId)
+        console.log(typeof evt.target.id)
+        this.deleteProduct( evt.target.id)
     }
 
     inStockHandler(evt) {
@@ -53,6 +54,7 @@ class Products extends Component {
     }
 
     deleteProduct(productID) {
+
         let remainingProducts = this.state.products.filter((product) => {
 
             return product.id !== productID;
@@ -80,6 +82,19 @@ class Products extends Component {
             products: [...this.state.products, newProduct]
         })
 
+        this.clearFormData()
+    }
+
+    clearFormData() {
+        this.setState({
+            product:{
+                id: '',
+                category: '',
+                price: '',
+                stocked: false,
+                name: ''
+            }
+        })
     }
 
     render() {
