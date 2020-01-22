@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 
-
 class SearchComponent extends Component {
 
     constructor(props) {
@@ -9,10 +8,9 @@ class SearchComponent extends Component {
         this.handleSearch = this.handleSearch.bind(this)
     }
 
-    handleSearch() {
-        
+    handleSearch(evt) {
+        this.props.searchForText(evt)
     }
-
     render() {
         return (
             <form >

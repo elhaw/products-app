@@ -21,6 +21,7 @@ class Products extends Component {
 
         this.state = {
             products: PRODUCTS,
+            filterdProducts: [],
             search: '',
             inStock: false,
             product: {
@@ -29,8 +30,7 @@ class Products extends Component {
                 price: '',
                 stocked: false,
                 name: ''
-            },
-            emptyData: true
+            }
         }
 
         this.deleteProduct = this.deleteProduct.bind(this)
@@ -39,14 +39,14 @@ class Products extends Component {
         this.addProductHandler = this.addProductHandler.bind(this)
         this.addNewProduct = this.addNewProduct.bind(this)
         this.clearFormData = this.clearFormData.bind(this)
-        this.sortingAZ = this.sortingAZ.bind(this)
+        this.sortingByName = this.sortingByName.bind(this)
+        this.searchForText = this.searchForText.bind(this)
     }
 
 
     handleDeleteClick(evt) {
         evt.stopPropagation();
         evt.preventDefault();
-        console.log(typeof evt.target.id)
         this.deleteProduct(evt.target.id)
     }
 
@@ -105,12 +105,12 @@ class Products extends Component {
         })
     }
 
-    sortingAZ(evt) {
+    sortingByName(evt) {
 
-        let sortDirection = ()=>{
+        let sortDirection = () => {
             let sortCondition = evt.target.name
 
-            if (sortCondition  === "sortAZ") {
+            if (sortCondition === "sortAZ") {
                 return -1;
             }
             else if (sortCondition === "sortZA") {
@@ -118,7 +118,7 @@ class Products extends Component {
             }
         }
         let result = sortDirection();
-        
+
         let sortedAZ = this.state.products.sort(function (a, b) {
             let nameA = a.name.toUpperCase();
             let nameB = b.name.toUpperCase();
@@ -135,14 +135,28 @@ class Products extends Component {
         })
     }
 
+    searchForText(evt) {
+        evt.preventDefault()
+        let products = this.state.products;
+        let searchQuery = this.state.search;
+
+        products = products.filter(function (product) {
+            return product.name.toLowerCase().indexOf(searchQuery) !== -1; // returns true or false
+        });
+        this.setState({
+            filterdProducts:
+                products
+        });
+    }
+
     render() {
         return (
             <div className="ui raised very padded text container segment">
                 <h2 className="ui header">products app</h2>
-                <SearchComponent searchText={this.state.search} />
-                <SortComponent onSort={this.sortingAZ} />
+                <SearchComponent searchForText={this.searchForText} searchText={this.state.search} />
+                <SortComponent onSort={this.sortingByName} />
                 <InStockComponent inStock={this.state.inStock} isInStockHandler={this.inStockHandler} />
-                <ProductList inStock={this.state.inStock} searchText={this.state.search} deleteButtonClicked={this.handleDeleteClick} products={this.state.products} />
+                <ProductList filterdProducts = {this.filterdProducts}  inStock={this.state.inStock} searchText={this.state.search} deleteButtonClicked={this.handleDeleteClick} products={this.state.products} />
                 <AddProcuctComponent onSave={this.addNewProduct} product={this.state.product} addProductHandler={this.addProductHandler} />
 
             </div>
