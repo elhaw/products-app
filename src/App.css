@@ -42,7 +42,7 @@ i.icon.minus.circle:before {
 
 
 .outOfStock {
-  color: white;
+  color: rgb(197, 179, 179);
   background-color: #282c34;
 }
 
