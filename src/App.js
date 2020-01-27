@@ -1,10 +1,9 @@
 import React from 'react';
-import Products from './components/Products'
 import './App.css';
 
 function App() {
   return (
-    <Products />
+      <h1>product app </h1>
   );
 }
 
