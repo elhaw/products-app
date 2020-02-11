@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import Products from './components/Products'
 import './App.css';
 
 function App() {
   return (
-      <h1>product app title </h1>
+      <Fragment>
+        <Products />
+      </Fragment>
   );
 }
 
