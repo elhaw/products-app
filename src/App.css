@@ -24,18 +24,15 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
 .minus {
-  cursor :pointer;
+  cursor: pointer;
 }
 
 i.icon.minus.circle:before {
   color: red;
 }
-.deleteButton{
+
+.deleteButton {
   padding: 10px;
   /* cursor: pointer; */
 }
@@ -46,6 +43,40 @@ i.icon.minus.circle:before {
   background-color: #282c34;
 }
 
-button > * {
+button>* {
   pointer-events: none;
+}
+
+.sortableColumnHeader-Current {
+  color: green;
+}
+
+.productOutOFStock {
+  color: red
+}
+
+.productSection {
+  width: 80%;
+  margin: 2rem auto;
+  padding: 3rem;
+  /* display: flex; */
+  /* justify-content: center; */
+  background-color: #a0afddab;
+}
+
+.ProductTableHeader-current {
+  background-color: #0ff;
+}
+
+.ProductRow-out-of-stock {
+  color: red;
+}
+
+.formWarpper {
+  background-color: #00ff8fa8;
+  text-align: center;
+  padding: 1rem;
+  margin: 2rem;
+  border-radius: 1rem;
+  box-shadow: inset 0px 0px 4px 3px white;
 }

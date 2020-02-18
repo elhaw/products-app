@@ -1,13 +1,17 @@
-import React, { Fragment } from 'react';
-import Products from './components/Products'
+import React from 'react';
+import Products from './Products'
 import './App.css';
 
-function App() {
-  return (
-      <Fragment>
+class App extends React.Component {
+  render() {
+    return (
+      <section className="productSection">
         <Products />
-      </Fragment>
-  );
+      </section>
+    );
+  }
 }
 
 export default App;
+
+
