@@ -13,11 +13,34 @@ var PRODUCTS = {
 };
 
 export default class Products extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            textFilter: '',
+            inStockOnly: false,
+            products: PRODUCTS
+        }
+        this.onCahngeHandler = this.onCahngeHandler.bind(this)
+    }
+    onCahngeHandler(evt) {
+        const value = evt.target.type === 'checkbox' ? evt.target.checked : evt.target.value
+        this.setState({
+
+            [evt.target.name] : value
+        })
+    }
     render() {
         return (
             <Fragment>
-                <Filters />
-                <ProductTable products = {PRODUCTS} />
+                <Filters
+                    textFilter={this.state.textFilter}
+                    inStockOnly={this.state.inStockOnly}
+                    formHandler = {this.onCahngeHandler}
+                />
+                <ProductTable
+                    textFilter={this.state.textFilter}
+                    inStockOnly={this.state.inStockOnly}
+                    products={PRODUCTS} />
                 <ProductForm />
             </Fragment>
         )

@@ -2,6 +2,10 @@ import React, { Component, Fragment } from 'react'
 
 export default class ProductRow extends Component {
 
+    onDeleteClick(evt) {
+        console.log(evt.target)
+    }
+
     render() {
         return (
             <Fragment>
@@ -12,7 +16,11 @@ export default class ProductRow extends Component {
                         </span>
                     </td>
                     <td>{this.props.product.price}</td>
-
+                    <td  >
+                        <button  onClick = {this.onDeleteClick} >
+                            X
+                        </button>
+                    </td>
                 </tr>
             </Fragment>
         )

@@ -80,3 +80,11 @@ button>* {
   border-radius: 1rem;
   box-shadow: inset 0px 0px 4px 3px white;
 }
+
+.searchField {
+  margin: 1rem;
+}
+
+.inStockField {
+  margin: 1rem;
+}
