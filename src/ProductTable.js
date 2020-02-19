@@ -6,9 +6,20 @@ export default class ProductTable extends Component {
         super(props);
 
         this.state = {
-            column: 'name',
-            dirction: 'desc'
+            sort: {
+                column: 'name',
+                direction: 'desc'
+            }
         }
+
+        this.sortByKeyAndOrder = this.sortByKeyAndOrder.bind(this)
+    }
+
+    sortByKeyAndOrder(evt) {
+        let productsAsArray = Object.keys(this.props.products).map((pid) => this.props.products[pid]);
+
+        console.log(evt.target)
+
     }
 
     render() {
@@ -23,13 +34,21 @@ export default class ProductTable extends Component {
                     <ProductRow product={product} key={product.id} />
                 )
         })
+
+        let sorted
+
+
         return (
             <div>
                 <table>
                     <thead>
                         <tr>
-                            <SortableColumnHeader column="name" />
-                            <SortableColumnHeader column="price" />
+                            <SortableColumnHeader
+                                column="name"
+                                currentSort={this.state.sort}
+                                sortByKeyAndOrder={this.sortByKeyAndOrder}
+
+                            />
                         </tr>
                     </thead>
                     <tbody>

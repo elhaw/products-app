@@ -17,7 +17,7 @@ export default class ProductRow extends Component {
                     </td>
                     <td>{this.props.product.price}</td>
                     <td  >
-                        <button  onClick = {this.onDeleteClick} >
+                        <button id = {this.props.product.id} onClick = {this.onDeleteClick} >
                             X
                         </button>
                     </td>
