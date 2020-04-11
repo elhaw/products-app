@@ -21,6 +21,35 @@ export default class ProductTable extends Component {
         console.log(evt.target)
 
     }
+    sortingByName(evt) {
+
+        let sortDirection = () => {
+            let sortCondition = evt.target.name
+
+            if (sortCondition === "sortAZ") {
+                return -1;
+            }
+            else if (sortCondition === "sortZA") {
+                return 1;
+            }
+        }
+        let result = sortDirection();
+
+        let sortedAZ = this.state.products.sort(function (a, b) {
+            let nameA = a.name.toUpperCase();
+            let nameB = b.name.toUpperCase();
+            if (nameA > nameB) {
+                return -result
+            }
+            if (nameA < nameB) {
+                return result
+            }
+            return 0;
+        });
+        this.setState({
+            products: sortedAZ
+        })
+    }
 
     render() {
         let productsAsArray = Object.keys(this.props.products).map((pid) => this.props.products[pid]);
